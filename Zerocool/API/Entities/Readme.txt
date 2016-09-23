@@ -1,0 +1,1 @@
+﻿I don't think this API will be versioned since it's internal and it checks against the client executable. Just increment version per change.
