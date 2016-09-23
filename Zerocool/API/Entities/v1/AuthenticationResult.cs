@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Zerocool.API.Entities.v1
 {
@@ -11,7 +12,9 @@ namespace Zerocool.API.Entities.v1
         /// <summary>
         /// User authentication token for authorized player.
         /// </summary>
+        [JsonProperty(PropertyName =  "authentication_token")]
         public string AuthenticationToken { get; set; }
+        [JsonProperty(PropertyName = "autocomplete")]
         public string Autocomplete { get; set; } // TODO: Determine format
         /// <summary>
         /// Associated account email.
@@ -20,10 +23,12 @@ namespace Zerocool.API.Entities.v1
         /// <summary>
         /// Background music volume.
         /// </summary>
+        [JsonProperty(PropertyName = "gui_bgm")]
         public int GUIBgm { get; set; }
         /// <summary>
         /// Sound effects volume.
         /// </summary>
+        [JsonProperty(PropertyName = "gui_sfx")]
         public int GUISfx { get; set; }
         public bool HasReceivedSurvey { get; set; } // No clue
         /// <summary>

@@ -22,7 +22,7 @@ namespace Zerocool.API.Tests
         {
             HackmudApiClient apiClient = new HackmudApiClient();
             AuthenticationResult result = null;
-            SteamAPI.Init();
+            Console.WriteLine(SteamAPI.Init());
             result = await apiClient.AuthenticateAsync(SteamAPIExtension.GetToken());
             Assert.IsNull(result.Error);
             Assert.IsNotNull(result.AuthenticationToken);
