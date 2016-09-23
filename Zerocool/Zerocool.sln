@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerocool", "Zerocool.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerocool.Tests", "..\Zerocool.Tests\Zerocool.Tests.csproj", "{C4615B44-EF0A-45DA-9314-97602B5432D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerocool.BasicClient", "..\Zerocool.BasicClient\Zerocool.BasicClient.csproj", "{DED656BF-6DE7-462B-8D2D-007256C08987}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C4615B44-EF0A-45DA-9314-97602B5432D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4615B44-EF0A-45DA-9314-97602B5432D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4615B44-EF0A-45DA-9314-97602B5432D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED656BF-6DE7-462B-8D2D-007256C08987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED656BF-6DE7-462B-8D2D-007256C08987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED656BF-6DE7-462B-8D2D-007256C08987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED656BF-6DE7-462B-8D2D-007256C08987}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
