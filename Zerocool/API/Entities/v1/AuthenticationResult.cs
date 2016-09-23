@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zerocool.API.Entities.v1
 {
-    public class AuthenticationResult
+    public class AuthenticationResult : IStandardRequest
     {
         /// <summary>
         /// User authentication token for authorized player.
@@ -52,6 +52,8 @@ namespace Zerocool.API.Entities.v1
         public string SteamId { get; set; } // This should be an int. Naughty API.
         public int[] SubscribedBoardIds { get; set; }
         public int[] SubscribedPostIds { get; set; }
+
+        public Exception Error { get; set; }
 
     }
 }

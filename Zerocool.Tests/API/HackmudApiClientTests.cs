@@ -1,44 +1,42 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Zerocool.API;
+﻿using Zerocool.API;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using NUnit.Framework.Internal;
 using Zerocool.API.Entities.v1;
+using Steamworks;
+using Zerocool.Tests;
 
 namespace Zerocool.API.Tests
 {
-    [TestClass()]
+    [TestFixture]
     public class HackmudApiClientTests
     {
-        [TestMethod]
-        public void AuthenticateAsyncTest()
+        [Test]
+        public async Task AuthenticateAsyncTest()
         {
             HackmudApiClient apiClient = new HackmudApiClient();
-            AuthenticationResult result = apiClient.AuthenticateAsync(File.ReadAllText("token.txt")).Result;
+            AuthenticationResult result = null;
+            SteamAPI.Init();
+            result = await apiClient.AuthenticateAsync(SteamAPIExtension.GetToken());
+            Assert.IsNull(result.Error);
             Assert.IsNotNull(result.AuthenticationToken);
             Assert.IsTrue(result.AuthenticationToken.Length > 0);
+            Assert.Pass();
         }
 
-        [TestMethod]
-        public void AuthenticateAsyncFailTest()
+        [Test]
+        public async Task AuthenticateAsyncFailTest()
         {
             HackmudApiClient apiClient = new HackmudApiClient();
-            try
-            {
-                AuthenticationResult result = apiClient.AuthenticateAsync("thisIsInvalid").Result;
-                Assert.Fail("No exception thrown on invalid login.");
-            }
-            catch (ApiException)
-            {
-
-            }
-            catch (Exception)
-            {
-                Assert.Fail("Incorrect exception.");
-            }
+            AuthenticationResult result = null;
+            result = await apiClient.AuthenticateAsync("thisWillNotWork");
+            Assert.IsNotNull(result.Error);
         }
     }
 }
