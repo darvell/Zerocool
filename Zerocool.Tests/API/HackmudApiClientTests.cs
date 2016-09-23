@@ -2,6 +2,7 @@
 using Zerocool.API;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,15 @@ namespace Zerocool.API.Tests
     [TestClass()]
     public class HackmudApiClientTests
     {
+        [TestMethod]
+        public void AuthenticateAsyncTest()
+        {
+            HackmudApiClient apiClient = new HackmudApiClient();
+            AuthenticationResult result = apiClient.AuthenticateAsync(File.ReadAllText("token.txt")).Result;
+            Assert.IsNotNull(result.AuthenticationToken);
+            Assert.IsTrue(result.AuthenticationToken.Length > 0);
+        }
+
         [TestMethod]
         public void AuthenticateAsyncFailTest()
         {
