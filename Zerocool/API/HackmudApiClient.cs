@@ -16,7 +16,7 @@ namespace Zerocool.API
     public class HackmudApiClient
     {
         private const string BASE_API_URL = "https://www.hackmud.com";
-        private const string API_USER_AGENT = "TotallyNotUnityPlayer";
+        private const string API_USER_AGENT = "Zerocool / 0.0.1 / Hack The Gibson";
 
         private Task<T> ExecuteAsync<T>(RestRequest request) where T : new()
         {
