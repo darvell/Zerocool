@@ -37,27 +37,14 @@ namespace Zerocool.API
             {
                 if (response.ErrorException != null)
                 {
-                    if (response.Data is IStandardRequest)
-                    {
-                        ((IStandardRequest) response.Data).Error = response.ErrorException;
-                    }
-                    else
-                    {
-                        // TODO: Make sure this gets passed up right
-                        throw response.ErrorException;
-                    }
+                    taskCompletionSource.SetException(response.ErrorException);
+                    return;
                 }
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     ErrorResult error = JsonConvert.DeserializeObject<ErrorResult>(response.Content);
-                    if (response.Data is IStandardRequest)
-                    {
-                        ((IStandardRequest)response.Data).Error = new ApiException(error.Message);
-                    }
-                    else
-                    {
-                        throw new ApiException(error.Message);
-                    }
+                    taskCompletionSource.SetException(new ApiException(error.Message));
+                    return;
                 }
                 taskCompletionSource.SetResult(response.Data);
             });
@@ -74,7 +61,7 @@ namespace Zerocool.API
 
             return ExecuteAsync<AuthenticationResult>(request);
         }
-        
+
         #endregion
 
     }

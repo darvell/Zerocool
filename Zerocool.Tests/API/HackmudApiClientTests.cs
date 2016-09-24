@@ -24,7 +24,6 @@ namespace Zerocool.API.Tests
             AuthenticationResult result = null;
             Console.WriteLine(SteamAPI.Init());
             result = await apiClient.AuthenticateAsync(SteamAPIExtension.GetToken());
-            Assert.IsNull(result.Error);
             Assert.IsNotNull(result.AuthenticationToken);
             Assert.IsTrue(result.AuthenticationToken.Length > 0);
             Assert.Pass();
@@ -35,8 +34,19 @@ namespace Zerocool.API.Tests
         {
             HackmudApiClient apiClient = new HackmudApiClient();
             AuthenticationResult result = null;
-            result = await apiClient.AuthenticateAsync("thisWillNotWork");
-            Assert.IsNotNull(result.Error);
+            try
+            {
+                result = await apiClient.AuthenticateAsync("thisWillNotWork");
+                Assert.Fail("No exception thrown on invalid credentials.");
+            }
+            catch (ApiException)
+            {
+
+            }
+            catch (Exception)
+            {
+                Assert.Fail("Non-expected exception.");
+            }
         }
     }
 }
